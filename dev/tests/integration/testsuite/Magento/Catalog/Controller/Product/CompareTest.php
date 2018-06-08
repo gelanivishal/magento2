@@ -4,9 +4,8 @@
  * See COPYING.txt for license details.
  */
 
-// @codingStandardsIgnoreFile
-
 namespace Magento\Catalog\Controller\Product;
+
 use Magento\Framework\Message\MessageInterface;
 
 /**
@@ -49,7 +48,8 @@ class CompareTest extends \Magento\TestFramework\TestCase\AbstractController
         );
 
         $this->assertSessionMessages(
-            $this->equalTo(['You added product Simple Product 1 Name to the <a href="http://localhost/index.php/catalog/product_compare/">comparison list</a>.']),
+            $this->equalTo(['You added product Simple Product 1 Name to the <a 
+            href="http://localhost/index.php/catalog/product_compare/">comparison list</a>.']),
             MessageInterface::TYPE_SUCCESS
         );
 
@@ -307,7 +307,8 @@ class CompareTest extends \Magento\TestFramework\TestCase\AbstractController
         // important
         $compareItems->setVisitorId(
             \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                \Magento\Customer\Model\Visitor::class)->getId()
+                \Magento\Customer\Model\Visitor::class
+            )->getId()
         );
         $actualProductIds = [];
         foreach ($compareItems as $compareItem) {

@@ -43,8 +43,10 @@ class Add extends \Magento\Catalog\Controller\Product\Compare
                         'compare_list_url' => $this->_url->getUrl('catalog/product_compare')
                     ]
                 );
-
-                $this->_eventManager->dispatch('catalog_product_compare_add_product', ['product' => $product]);
+                $this->_eventManager->dispatch(
+                    'catalog_product_compare_add_product',
+                    ['product' => $product]
+                );
             }
 
             $this->_objectManager->get(\Magento\Catalog\Helper\Product\Compare::class)->calculate();
