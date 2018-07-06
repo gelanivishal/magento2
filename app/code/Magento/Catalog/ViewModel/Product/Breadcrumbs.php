@@ -38,28 +38,20 @@ class Breadcrumbs extends DataObject implements ArgumentInterface
     private $json;
 
     /**
-     * @var Escaper
-     */
-    private $escaper;
-
-    /**
      * @param Data $catalogData
      * @param ScopeConfigInterface $scopeConfig
-     * @param Json|null $json
-     * @param Escaper|null $escaper
+     * @param Json $json
      */
     public function __construct(
         Data $catalogData,
         ScopeConfigInterface $scopeConfig,
-        Json $json = null,
-        Escaper $escaper = null
+        Json $json = null
     ) {
         parent::__construct();
 
         $this->catalogData = $catalogData;
         $this->scopeConfig = $scopeConfig;
         $this->json = $json ?: ObjectManager::getInstance()->get(Json::class);
-        $this->escaper = $escaper ?: ObjectManager::getInstance()->get(Escaper::class);
     }
 
     /**
@@ -107,14 +99,12 @@ class Breadcrumbs extends DataObject implements ArgumentInterface
      */
     public function getJsonConfiguration()
     {
-        return $this->json->serialize(
-            [
-                'breadcrumbs' => [
-                    'categoryUrlSuffix' => $this->escaper->escapeHtml($this->getCategoryUrlSuffix()),
-                    'userCategoryPathInUrl' => (int)$this->isCategoryUsedInProductUrl(),
-                    'product' => $this->escaper->escapeHtml($this->escaper->escapeJs($this->getProductName()))
-                ]
+        return $this->json->serialize([
+            'breadcrumbs' => [
+                'categoryUrlSuffix' => $this->getCategoryUrlSuffix(),
+                'userCategoryPathInUrl' => (int)$this->isCategoryUsedInProductUrl(),
+                'product' => $this->getProductName()
             ]
-        );
+        ]);
     }
 }
