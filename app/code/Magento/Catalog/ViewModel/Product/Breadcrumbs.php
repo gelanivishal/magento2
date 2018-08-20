@@ -3,7 +3,6 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-declare(strict_types=1);
 
 namespace Magento\Catalog\ViewModel\Product;
 
@@ -93,11 +92,11 @@ class Breadcrumbs extends DataObject implements ArgumentInterface
     }
 
     /**
-     * Returns breadcrumb json.
+     * Returns breadcrumb json with html escaped names
      *
      * @return string
      */
-    public function getJsonConfiguration()
+    public function getJsonConfigurationHtmlEscaped() : string
     {
         return $this->json->serialize([
             'breadcrumbs' => [
@@ -106,5 +105,16 @@ class Breadcrumbs extends DataObject implements ArgumentInterface
                 'product' => $this->getProductName()
             ]
         ]);
+    }
+
+    /**
+     * Returns breadcrumb json.
+     *
+     * @return string
+     * @deprecated in favor of new method with name {suffix}Html{postfix}()
+     */
+    public function getJsonConfiguration()
+    {
+        return $this->getJsonConfigurationHtmlEscaped();
     }
 }
