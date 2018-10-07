@@ -15,8 +15,7 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 
 /**
  * Save action for catalog rule
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @package Magento\CatalogRule\Controller\Adminhtml\Promo\Catalog
  */
 class Save extends \Magento\CatalogRule\Controller\Adminhtml\Promo\Catalog implements HttpPostActionInterface
 {
