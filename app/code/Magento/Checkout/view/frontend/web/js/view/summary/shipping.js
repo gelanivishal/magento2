@@ -21,8 +21,8 @@ define([
          * @return {*}
          */
         getShippingMethodTitle: function () {
-            var shippingMethod = '',
-                shippingMethodTitle = '';
+            var shippingMethod;
+            var shippingMethodTitle = '';
 
             if (!this.isCalculated()) {
                 return '';
